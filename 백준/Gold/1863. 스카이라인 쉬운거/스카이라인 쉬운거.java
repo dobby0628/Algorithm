@@ -8,6 +8,7 @@ import java.util.Stack;
 
 // 1try 틀림 : 높이가 0일 때 고려를 안한 것이 건물의 개수를 잘못 셈
 // 2try 틀림 : 건물을 더하는 시점이 잘못됨
+// 3try 틀림 : y = 0인 조건문을 제일 앞에 둬야함 그렇지 않으면 0이 연속으로 나올 때 push되어 잘못된 값 나옴
 
 public class Main {
 
