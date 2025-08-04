@@ -1,3 +1,5 @@
+// 풀이 : 지름길이 아닌 일반도로의 가중치를 모두 적용하여 다익스트라 알고리즘으로 풀이
+
 import java.util.*;
 import java.io.*;
 
@@ -78,4 +80,5 @@ public class Main {
 	    dijkstra(0);
 	    System.out.println(dist[D]);
 	}
+
 }
