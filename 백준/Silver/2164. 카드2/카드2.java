@@ -1,3 +1,7 @@
+// 카드를 버리고 카드를 아래로 내리는 과정에서
+// 조건을 잘못 줘서 5트함
+// 조건을 잘 생각하고 queue가 비어있지 않은지 확인하는 과정이 필요함
+
 import java.util.*;
 import java.io.*;
 public class Main {
@@ -25,3 +29,4 @@ public class Main {
 		System.out.println(q.poll());
 	}
 }
+
