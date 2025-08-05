@@ -1,3 +1,7 @@
+// dfs 연습 문제
+// dfs 라는 것을 알고 풀려고 하니 dfs 적용하면 되는데
+// 이후 다른 알고리즘을 알고 나서 접근방법에 대해서도 고민해봐야할 것 같다
+
 import java.util.*;
 import java.io.*;
 
@@ -47,3 +51,4 @@ public class Main {
 		System.out.println(count);
 	}
 }
+
