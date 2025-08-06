@@ -1,3 +1,5 @@
+// 큐를 사용하여 줄을 세우고 앞에서부터 식당에 들어갈 수 있게 함
+// 큐에 정보가 정리된 후 줄의 최대값과 마지막에 들어온 학생에 대해 비교하여 출력정보 찾을 수 있다
 
 import java.util.*;
 import java.io.*;
@@ -43,3 +45,4 @@ public class Main {
 		System.out.println(max + " " + last);
 	}
 }
+
