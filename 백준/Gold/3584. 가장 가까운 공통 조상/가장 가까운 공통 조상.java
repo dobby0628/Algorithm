@@ -59,7 +59,9 @@ public class Main {
 			// 첫번째 노드 dfs 실행하기
 			dfs(node1);
 			dfs(node2);
-			System.out.println(cmn_parent);
+			sb.append(cmn_parent);
+			sb.append("\n");
 		}
+		System.out.print(sb.toString());
 	}
 }
