@@ -13,6 +13,8 @@
  *  # 유의사항
  *  어떤 수가 2개일 때 자리가 다르면 다른 수로 인식함
  *  두 수를 구할 때 본인은 포함이 되면 안됨!!
+ *  Q) 두 수의 합이므로 start가 standard_i를 넘을 수 없지 않나??
+ *   -> 음수와 0도 들어올 수 있기 때문에 start < standard_i 로 끝내면 안됨!!
  *  
  *  # 시간복잡도 O(N²)
  *  정렬: Arrays.sort → O(N log N)
@@ -75,3 +77,4 @@ public class Main {
 		bw.close();
 	}
 }
+
