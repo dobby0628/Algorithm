@@ -8,6 +8,8 @@
  * 
  * # 구현
  * 버블 정렬 이용해보기
+ * 
+ * # 시간복잡도 O(n^2)
  */
 
 import java.io.*;
@@ -46,3 +48,4 @@ public class Main {
 		bw.close();
 	}
 }
+
