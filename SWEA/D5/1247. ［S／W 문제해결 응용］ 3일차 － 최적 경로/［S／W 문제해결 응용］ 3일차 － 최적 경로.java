@@ -33,6 +33,7 @@ public class Solution {
 	
 	// dfs
 	static void dfs(int present, int depth) {
+		// 경우의 수 줄이기 위해 추가함
         if (presentWeight > minWeight)
 			return;
 		if (depth == customerN) {
