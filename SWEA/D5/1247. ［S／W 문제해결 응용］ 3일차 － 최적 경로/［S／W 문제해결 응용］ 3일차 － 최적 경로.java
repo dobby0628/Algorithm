@@ -33,6 +33,8 @@ public class Solution {
 	
 	// dfs
 	static void dfs(int present, int depth) {
+        if (presentWeight > minWeight)
+			return;
 		if (depth == customerN) {
 			presentWeight += getWeight(list.get(present), end);
 			minWeight = Math.min(minWeight, presentWeight);
