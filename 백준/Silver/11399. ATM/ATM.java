@@ -1,60 +1,42 @@
 /*
+ * ATM
  * # 문제 이해
- * ATM 1대 
- * N명 줄 섬 1~ N 번호 주어짐
- * i번 사람이 인출하는데 걸리는 시간 p_i분
+ * ATM 1대 , n명의 사람들이 줄을 서있음
+ * 사람은 1 ~ n까지 번호가 매겨져 있고 i번 사람의 소요 시간은 pi분
+ * 사람들이 줄을 서는 순서에 따라, 돈을 인출하는 총 시간이 달라지게 된다.
  * 
- * 모든 사람이 돈을 뽑을 때 걸리는데 필요한 시간의 합의 최솟값 구하기
+ * 각 사람이 돈을 인출하는데 필요한 시간의 합의 최솟값을 구하는 프로그램 만들기
  * 
  * # 문제 풀이
- * 
- * p를 오름차순으로 정렬하여 누적합의 합을 구하면 됨
- * 삽입 정렬로 풀어보기
- * 
- * # 입력
- * N(1 ≤ N ≤ 1,000)
- * P(1 ≤ Pi ≤ 1,000)
- * 
- * # 시간복잡도
- * 최대값이 적어 O(n^2)도 상관없음
- * 
+ * 앞의 사람의 시간이 짧을수록 뒷사람이 기다리는 시간이 줄어들음
+ * 시간순으로 정렬하여 가장 짧은 사람부터 atm 사용하도록 만들기
  * 
  */
 
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st;
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		StringBuilder sb = new StringBuilder();
 		
-		int person = Integer.parseInt(br.readLine());
+		int n = Integer.parseInt(br.readLine());
 		
-		int[] arr = new int[person];
-		st = new StringTokenizer(br.readLine());
-		for (int i = 0; i < person; i++) {
-			arr[i] = Integer.parseInt(st.nextToken());
-		}
-		insertionsort(arr);
+		int[] time = new int[n];
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		for (int i = 0; i < n; i++)
+			time[i] = Integer.parseInt(st.nextToken());
 		
-		// 누적 시간 합 구하기
-		int sum = 0;
-		for (int i = 0; i < person; i++) {
-			sum += arr[i] * (person - i);
+		Arrays.sort(time);
+
+		int totalTime = 0;
+		int beforeTime = 0;
+		for (int i = 0; i < n; i++) {
+			totalTime += beforeTime + time[i];
+			beforeTime += time[i];
 		}
-		System.out.println(sum);
-	}
-	
-	public static void insertionsort(int[] arr) {
-		for (int i = 1; i < arr.length; i++) {
-			int key = arr[i];
-			int j = i -1;
-			while (j >= 0 && arr[j] > key) {
-				arr[j+1] = arr[j];
-				j--;
-			}
-			arr[j+1] = key;
-		}
+		System.out.println(totalTime);
 	}
 }
