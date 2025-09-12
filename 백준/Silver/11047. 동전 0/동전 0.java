@@ -1,39 +1,40 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.StringTokenizer;
-
 /*
- * 동전 0
- * # 문제 이해
- * 동전은 총 n 종류, 각각의 동전을 매우 많이 가지고 있음
- * 동전을 적절히 사용해서 그 가치의 합을 k로 만드려고 한다.
- * 이때 필요한 동전 개수의 최솟값을 구하는 프로그램
+ * 준규가 가지고 있는 동전은 총 n종류
+ * 가치의 합을 k로 만드려고 한다
+ * 동전 개수의 최솟값을 구하는 프로그램
  * 
- * Ai는 Ai-1의 배수 -> 해당 조건이 있기 때문에 그리디로 풀이 가능
+ * 
  */
+
+import java.io.*;
+import java.util.*;
+
 public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		StringBuilder sb = new StringBuilder();
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		int n = Integer.parseInt(st.nextToken());
-		int k = Integer.parseInt(st.nextToken());
+		int coinN = Integer.parseInt(st.nextToken());
+		int coinSum = Integer.parseInt(st.nextToken());
 		
-		Deque<Integer> dq = new ArrayDeque<>();
-		for (int i = 0; i < n; i++) {
-			dq.addFirst(Integer.parseInt(br.readLine()));
-		}
+		int[] coinKind = new int[coinN];
+		
+		for (int i = 0; i < coinN; i++)
+			coinKind[i] = Integer.parseInt(br.readLine());
 		
 		int cnt = 0;
-		for (int coin : dq) {
-			if (k >= coin) {
-				cnt += k / coin;
-				k = k % coin;
+		for (int i = coinN-1; i >= 0; i--) {
+			if (coinSum >= coinKind[i]) {
+				cnt += coinSum / coinKind[i];
+				coinSum = coinSum % coinKind[i];
 			}
 		}
-		System.out.println(cnt);
+		sb.append(cnt);
+		bw.write(sb.toString());
+		bw.flush();
+		br.close();
+		bw.close();
 	}
 }
