@@ -1,41 +1,43 @@
 /*
+ * [구간 합 구하기 4]
+ * 
  * # 문제 이해
- * N개의 수가 주어졌을 때 i ~ j 수까지 합을 구하는 프로그램 작성
+ * 수 N개가 주어졌을 때, i번째 수부터 j번째 수까지 합을 구하는 프로그램을 작성하시오
  * 
  * # 문제 풀이
- * 구간합 알고리즘 사용
- * 
- * # 시간복잡도 O(N + M)
- * 구간의 합을 미리 구해놓으므로 n개의 배열을 만들때 비용 모두 사용
+ * 구간합 사용
  */
 
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		StringBuilder sb = new StringBuilder();
-		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		int N = Integer.parseInt(st.nextToken());
-		int M = Integer.parseInt(st.nextToken());
+		int n = Integer.parseInt(st.nextToken());
+		int m = Integer.parseInt(st.nextToken());
 		
-		int[] section_sum = new int[1+N];
-		
+		int[] sum = new int[n+1];
 		st = new StringTokenizer(br.readLine());
-		for (int i = 1; i <= N; i++) {
-			section_sum[i] = section_sum[i-1] + Integer.parseInt(st.nextToken());
+		for (int i = 1; i <= n; i++) {
+			int num = Integer.parseInt(st.nextToken());
+			
+			sum[i] = sum[i-1] + num;
 		}
 		
-		for (int i = 1; i <= M; i++) {
+		for (int i = 0; i < m; i++) {
 			st = new StringTokenizer(br.readLine());
 			int start = Integer.parseInt(st.nextToken());
 			int end = Integer.parseInt(st.nextToken());
-			sb.append(section_sum[end] - section_sum[start -1]);
-			sb.append("\n");
+			
+			int result = sum[end] - sum[start -1];
+			sb.append(sum[end] - sum[start -1]).append("\n");
 		}
+		
 		bw.write(sb.toString());
 		bw.flush();
 		br.close();
