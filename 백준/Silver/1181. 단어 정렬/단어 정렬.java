@@ -15,32 +15,6 @@
 import java.io.*;
 import java.util.*;
 
-class Word {
-	int len;
-	String word;
-	
-	
-	public Word(int len, String word) {
-		this.len = len;
-		this.word = word;
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) return true;
-		if (obj == null) return false;
-		if (getClass() != obj.getClass()) return false;
-		
-		Word other = (Word) obj;
-		return Objects.equals(this.word,  other.word);
-	}
-	
-	@Override
-	public int hashCode() {
-		return Objects.hash(word);
-	}
-}
-
 public class Main {
 	
 	public static void main(String[] args) throws IOException {
@@ -50,24 +24,25 @@ public class Main {
 		StringBuilder sb = new StringBuilder();
 		
 		int n = Integer.parseInt(br.readLine());
-		PriorityQueue<Word> words = new PriorityQueue<Word>(
+		
+		Set<String> set = new HashSet<>();
+		
+		// set을 통해 중복 제거
+		for (int i = 0; i < n; i++) {
+			set.add(br.readLine());
+		}
+
+		PriorityQueue<String> words = new PriorityQueue<String>(
 			(a,b) -> {
-				if (a.len == b.len) return a.word.compareTo(b.word);
-				return Integer.compare(a.len, b.len);
+				if (a.length() == b.length()) return a.compareTo(b);
+				return Integer.compare(a.length(), b.length());
 			}
 		);
 		
-		for (int i = 0; i < n; i++) {
-			String word = br.readLine();
-			Word w = new Word(word.length(), word);
-			
-			if (!words.contains(w))
-				words.add(w);
-		}
+		words.addAll(set);
 		
 		while (!words.isEmpty()) {
-			Word m = words.poll();
-			sb.append(m.word).append("\n");
+			sb.append(words.poll()).append("\n");
 		}
 		
 		bw.write(sb.toString());
